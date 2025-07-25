@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Xuyang (Andy) Huang | Personal Website</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #00c6fb;
+      --secondary: #005bea;
+      --glass-bg: rgba(30, 34, 44, 0.7);
+      --glass-border: rgba(255,255,255,0.18);
+      --text-main: #f3f6fa;
+      --text-secondary: #b0b8c9;
+      --header-glow: 0 0 16px #00c6fb, 0 0 32px #005bea;
+      --card-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      --section-gap: 40px;
+      --section-title-size: 1.45rem;
+      --section-title-gap: 14px;
+      --icon-size: 1.6em;
+      --subsection-bg: rgba(0, 198, 251, 0.06);
+      --subsection-radius: 10px;
+      --divider: rgba(0,198,251,0.10);
+    }
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: linear-gradient(120deg, #232526 0%, #414345 100%);
+      min-height: 100vh;
+      color: var(--text-main);
+      overflow-x: hidden;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: 0;
+      background: linear-gradient(120deg, #00c6fb 0%, #005bea 100%);
+      opacity: 0.18;
+      animation: gradientMove 8s ease-in-out infinite alternate;
+    }
+    #particles-bg {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+    }
+    @keyframes gradientMove {
+      0% { filter: blur(0px); }
+      100% { filter: blur(60px); }
+    }
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 56px auto 56px auto;
+      background: var(--glass-bg);
+      border-radius: 24px;
+      box-shadow: var(--card-shadow);
+      padding: 48px 36px 36px 36px;
+      border: 1.5px solid var(--glass-border);
+      backdrop-filter: blur(18px) saturate(140%);
+      -webkit-backdrop-filter: blur(18px) saturate(140%);
+      transition: box-shadow 0.3s;
+      display: flex;
+      flex-direction: column;
+      gap: var(--section-gap);
+    }
+    .container:hover {
+      box-shadow: 0 12px 48px 0 rgba(0,198,251,0.18), 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    }
+    header {
+      border-bottom: 2px solid rgba(0,198,251,0.12);
+      padding-bottom: 24px;
+      margin-bottom: 0;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin: 0 0 10px 0;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: var(--primary);
+      text-shadow: var(--header-glow);
+      transition: text-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(90deg, #00c6fb, #005bea, #fff, #00c6fb 90%);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradient-text-move 6s ease-in-out infinite alternate;
+    }
+    h1:hover {
+      text-shadow: 0 0 32px #00c6fb, 0 0 64px #005bea;
+    }
+    @keyframes gradient-text-move {
+     0% { background-position: 0% 50%; }
+     100% { background-position: 100% 50%; }
+    }
+    .contact {
+      font-size: 1.08rem;
+      color: var(--text-secondary);
+      margin-bottom: 0;
+      letter-spacing: 0.5px;
+    }
+    main {
+      display: flex;
+      flex-direction: column;
+      gap: var(--section-gap);
+    }
+    section {
+      margin: 0;
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeInUp 1s forwards;
+      background: none;
+      border-radius: 0;
+      padding: 0 0 0 0;
+      box-shadow: none;
+      transition: background 0.3s, box-shadow 0.3s;
+      position: relative;
+      will-change: box-shadow, background, opacity, transform;
+    }
+    section.section-visible {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+      transition: opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1);
+    }
+    section:hover {
+      background: rgba(0, 198, 251, 0.07);
+      box-shadow: 0 4px 32px 0 rgba(0,198,251,0.18);
+      z-index: 2;
+    }
+    section:nth-of-type(1) { animation-delay: 0.2s; }
+    section:nth-of-type(2) { animation-delay: 0.4s; }
+    section:nth-of-type(3) { animation-delay: 0.6s; }
+    section:nth-of-type(4) { animation-delay: 0.8s; }
+    section:nth-of-type(5) { animation-delay: 1.0s; }
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: var(--section-title-gap);
+      color: var(--primary);
+      font-size: var(--section-title-size);
+      margin-bottom: 18px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-shadow: 0 0 12px #00c6fb, 0 0 24px #005bea;
+      background: linear-gradient(90deg, #00c6fb, #005bea, #fff, #00c6fb 90%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradient-text-move 6s ease-in-out infinite alternate;
+      position: relative;
+    }
+    .section-icon {
+      width: var(--icon-size);
+      height: var(--icon-size);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      filter: none;
+    }
+    ul, ol {
+      margin: 0 0 0 18px;
+      padding: 0;
+    }
+    li {
+      margin-bottom: 8px;
+      line-height: 1.7;
+      color: var(--text-main);
+      transition: color 0.2s;
+      font-size: 1.04em;
+      padding-left: 0.2em;
+    }
+    .subsection {
+      margin-bottom: 16px;
+      background: var(--subsection-bg);
+      border-radius: var(--subsection-radius);
+      padding: 14px 18px 10px 18px;
+      box-shadow: none;
+      transition: background 0.3s;
+      position: relative;
+      display: block;
+    }
+    .subsection:last-child {
+      margin-bottom: 0;
+    }
+    .item-title {
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: 0.5px;
+      font-size: 1.08em;
+    }
+    .item-date {
+      float: right;
+      color: var(--text-secondary);
+      font-size: 0.98em;
+      font-weight: 400;
+      margin-left: 12px;
+    }
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 10px;
+    }
+    .skill {
+      background: linear-gradient(90deg, #00c6fb 0%, #005bea 100%);
+      color: #fff;
+      border-radius: 8px;
+      padding: 7px 16px;
+      font-size: 1em;
+      font-weight: 600;
+      margin-bottom: 8px;
+      box-shadow: 0 2px 8px 0 rgba(0,198,251,0.10);
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+      text-shadow: 0 1px 8px #005bea44;
+    }
+    .skill:hover {
+      transform: scale(1.08) rotate(-2deg);
+      box-shadow: 0 4px 24px 0 rgba(0,198,251,0.18);
+      background: linear-gradient(90deg, #005bea 0%, #00c6fb 100%);
+    }
+    @media (max-width: 600px) {
+      .container {
+        padding: 10px 0vw;
+      }
+      h1 {
+        font-size: 1.5rem;
+      }
+      .section-title {
+        font-size: 1.1rem;
+      }
+      .skills-list {
+        gap: 8px;
+      }
+      section {
+        padding: 0;
+      }
+    }
+    /* Fancy scroll bar */
+    ::-webkit-scrollbar {
+      width: 10px;
+      background: #232526;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(120deg, #00c6fb 0%, #005bea 100%);
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="particles-bg"></canvas>
+  <div class="container">
+    <header>
+      <h1>Xuyang (Andy) Huang</h1>
+      <div class="contact">
+        <span>26xuyangh@sais.edu.sg</span> &bull; 
+        <span>xuyanghuang801@gmail.com</span> &bull; 
+        <span>+65 9129 5186</span> &bull; 
+        <span>+86 135 2409 0801</span>
+      </div>
+    </header>
+    <main>
+      <section>
+        <div class="section-title">
+          <span class="section-icon">
+            <!-- Education icon: Academic Cap (Heroicons SVG) -->
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0v6m0 0c-4.418 0-8-1.79-8-4V10m8 10c4.418 0 8-1.79 8-4V10"/></svg>
+          </span>
+          Education
+        </div>
+        <div class="subsection">
+          <span class="item-title">Stamford American International School, Singapore</span>
+          <span class="item-date">Aug. 2023 – Present</span><br>
+          <strong>Overall IB grades:</strong> 38/42<br>
+          <strong>Courses taken:</strong> IBDP English B HL, IBDP Mandarin A SL, IBDP Economics HL, IBDP Business Management SL, IBDP Physics SL, IBDP Mathematics: Analysis and Approaches HL, Theory of Knowledge
+        </div>
+      </section>
+      <section>
+        <div class="section-title">
+          <span class="section-icon">
+            <!-- Awards icon: Trophy (Heroicons SVG) -->
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 21h8m-4-4v4m0-4a7 7 0 01-7-7V5a2 2 0 012-2h10a2 2 0 012 2v5a7 7 0 01-7 7z"/></svg>
+          </span>
+          Awards & Honors
+        </div>
+        <ul>
+          <li><span class="item-title">Individual Distinction Award in International Economics and Current Events, National Economics Competition 2025, Senior Division</span> <span class="item-date">Jan. 2025</span></li>
+          <li><span class="item-title">Honorable Mention, High School Mathematical Contest In Modeling 2024</span> <span class="item-date">Nov. 2024</span></li>
+          <li><span class="item-title">Bronze, Singapore and Asian Schools Math Olympiad 2024</span> <span class="item-date">Mar. 2024</span></li>
+          <li><span class="item-title">Bronze, British Physics Olympiad Senior Physics Challenge 2025</span> <span class="item-date">Mar. 2025</span></li>
+          <li><span class="item-title">Honor Roll, Stamford American International School</span> <span class="item-date">2024 & 2025</span></li>
+        </ul>
+      </section>
+      <section>
+        <div class="section-title">
+          <span class="section-icon">
+            <!-- Activities icon: Users (Heroicons SVG) -->
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87m9-5a4 4 0 11-8 0 4 4 0 018 0zm6 8v2a2 2 0 01-2 2H5a2 2 0 01-2-2v-2a6 6 0 0112 0z"/></svg>
+          </span>
+          Extracurricular Activities
+        </div>
+        <div class="subsection">
+          <span class="item-title">President, Statistics Club, Stamford American International School</span> <span class="item-date">Jan. 2024 – Present</span>
+          <ul>
+            <li>Organized weekly meetings to promote data analysis and math modeling among students.</li>
+            <li>Planned monthly workshops on current events to inspire quantitative decision-making.</li>
+            <li>Created an engaging environment for students interested in statistics and data science.</li>
+            <li>Gave insights on the future of statistics and data science.</li>
+          </ul>
+        </div>
+        <div class="subsection">
+          <span class="item-title">Varsity Soccer Player, Stamford American International School</span> <span class="item-date">Aug. 2023 – Present</span>
+          <ul>
+            <li>Attended weekly training sessions to improve technical skills, fitness, and tactical understanding.</li>
+            <li>Represented school in ACSIS League, competing with other international schools in Singapore.</li>
+          </ul>
+        </div>
+      </section>
+      <section>
+        <div class="section-title">
+          <span class="section-icon">
+            <!-- Academic Experiences icon: Briefcase (Heroicons SVG) -->
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 12v2m0 0v2m0-2h2m-2 0H8m12-2v6a2 2 0 01-2 2H6a2 2 0 01-2-2v-6m16 0V7a2 2 0 00-2-2h-3.5a1.5 1.5 0 01-3 0H6a2 2 0 00-2 2v3m16 0H4"/></svg>
+          </span>
+          Academic Experiences & Internships
+        </div>
+        <div class="subsection">
+          <span class="item-title">Pre-College Programs, Columbia University</span> <span class="item-date">Aug. 2023</span>
+          <ul>
+            <li>Attended Introduction to Business, Finance, and Economics for foundational concepts and practical applications.</li>
+            <li>Engaged in class activities and group discussions.</li>
+            <li>Presented final report-out on team’s fundraising strategy.</li>
+          </ul>
+        </div>
+        <div class="subsection">
+          <span class="item-title">MoneyBall Academy: Training Camp, Wharton Global Youth Program at the University of Pennsylvania</span> <span class="item-date">Jun. 2024</span>
+          <ul>
+            <li>Engaged in sports management from a business and statistical perspective.</li>
+            <li>Participated in activities and Q&A with guest speakers.</li>
+            <li>Presented final team presentation on EPL spending and performance modeling.</li>
+          </ul>
+        </div>
+        <div class="subsection">
+          <span class="item-title">Sports Industry Management Academy, Georgetown University, School of Continuing Studies</span> <span class="item-date">Jun. 2025</span>
+          <ul>
+            <li>Explored the sports industry and its opportunities.</li>
+            <li>Visited National Park, Washington Nationals home stadium, for venue management insights.</li>
+            <li>Communicated with guest speakers from various professions.</li>
+            <li>Investigated marketing/strategic partnerships and presented findings.</li>
+            <li>Voted as MVP in group by peers and professors.</li>
+          </ul>
+        </div>
+      </section>
+      <section>
+        <div class="section-title">
+          <span class="section-icon">
+            <!-- Volunteer icon: Heart (Heroicons SVG) -->
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.293l1.318-1.318a4.5 4.5 0 116.364 6.364L12 21.293l-7.682-7.682a4.5 4.5 0 010-6.364z"/></svg>
+          </span>
+          Volunteer
+        </div>
+        <div class="subsection">
+          <span class="item-title">Volunteer, VCD Project in Lions Club of Singapore Amber</span> <span class="item-date">Mar. 2023 – Present</span>
+          <ul>
+            <li>Participated in VCP project to help the underprivileged in the local community.</li>
+            <li>Collected fruits and vegetables at Pasir Panjang Wholesale Centre every Saturday for distribution.</li>
+          </ul>
+        </div>
+        <div class="subsection">
+          <span class="item-title">Volunteer at Dobu Camp in Beijing, China for Dragon Boat Race</span> <span class="item-date">Jun. 2024</span>
+          <ul>
+            <li>Helped organize a two-week Dragon Boat Competition.</li>
+            <li>Coordinated team practice sessions and collected competition results.</li>
+          </ul>
+        </div>
+        <div class="subsection">
+          <span class="item-title">Assistant Coach in Soccer Training Academy, Shanghai</span> <span class="item-date">Jul. 2025 - Aug. 2025</span>
+          <ul>
+            <li>Guided young left-footed players in skill development.</li>
+            <li>Inspired young athletes about soccer as a pathway to opportunities.</li>
+          </ul>
+        </div>
+      </section>
+      <section>
+        <div class="section-title">
+          <span class="section-icon">
+            <!-- Skills icon: Light Bulb (Heroicons SVG) -->
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m8-9h1M4 12H3m15.364-6.364l.707-.707M6.343 17.657l-.707.707m12.728 0l.707.707M6.343 6.343l-.707-.707M12 5a7 7 0 00-7 7c0 3.866 3.134 7 7 7s7-3.134 7-7a7 7 0 00-7-7z"/></svg>
+          </span>
+          Skills & Interests
+        </div>
+        <div class="skills-list">
+          <div class="skill">Mandarin</div>
+          <div class="skill">English</div>
+          <div class="skill">MATLAB</div>
+          <div class="skill">R</div>
+          <div class="skill">C++</div>
+          <div class="skill">Violin</div>
+        </div>
+      </section>
+      <section>
+        <div class="section-title">
+          <span class="section-icon">
+            <!-- Favorites icon: Star (Heroicons SVG) -->
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l2.036 6.29a1 1 0 00.95.69h6.6c.969 0 1.371 1.24.588 1.81l-5.347 3.89a1 1 0 00-.364 1.118l2.036 6.29c.3.921-.755 1.688-1.54 1.118l-5.347-3.89a1 1 0 00-1.175 0l-5.347 3.89c-.784.57-1.838-.197-1.54-1.118l2.036-6.29a1 1 0 00-.364-1.118l-5.347-3.89c-.783-.57-.38-1.81.588-1.81h6.6a1 1 0 00.95-.69l2.036-6.29z"/></svg>
+          </span>
+          Favorites
+        </div>
+        <div class="skills-list">
+          <div class="skill">Favorite author: Michael Lewis</div>
+          <div class="skill">Favorite book: Moneyball</div>
+          <div class="skill">Favorite film: MoneyBall</div>
+          <div class="skill">Favorite singer: Ed Sheeran</div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script>
+ // --- Animated Particles Background ---
+ const canvas = document.getElementById('particles-bg');
+ const ctx = canvas.getContext('2d');
+ let particles = [];
+ const PARTICLE_NUM = 48;
+ const colors = ['#00c6fb', '#005bea', '#fff', '#b0b8c9'];
+ function resizeCanvas() {
+   canvas.width = window.innerWidth;
+   canvas.height = window.innerHeight;
+ }
+ window.addEventListener('resize', resizeCanvas);
+ resizeCanvas();
+ function random(min, max) { return Math.random() * (max - min) + min; }
+ function createParticle() {
+   return {
+     x: random(0, canvas.width),
+     y: random(0, canvas.height),
+     r: random(1.2, 2.8),
+     color: colors[Math.floor(Math.random() * colors.length)],
+     dx: random(-0.3, 0.3),
+     dy: random(-0.3, 0.3),
+     alpha: random(0.3, 0.8)
+   };
+ }
+ function updateParticles() {
+   for (let p of particles) {
+     p.x += p.dx;
+     p.y += p.dy;
+     if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+     if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+   }
+ }
+ function drawParticles() {
+   ctx.clearRect(0, 0, canvas.width, canvas.height);
+   for (let p of particles) {
+     ctx.save();
+     ctx.globalAlpha = p.alpha;
+     ctx.beginPath();
+     ctx.arc(p.x, p.y, p.r, 0, 2 * Math.PI);
+     ctx.fillStyle = p.color;
+     ctx.shadowColor = p.color;
+     ctx.shadowBlur = 8;
+     ctx.fill();
+     ctx.restore();
+   }
+ }
+ function animateParticles() {
+   updateParticles();
+   drawParticles();
+   requestAnimationFrame(animateParticles);
+ }
+ particles = Array.from({length: PARTICLE_NUM}, createParticle);
+ animateParticles();
+ // --- Section Fade-in on Scroll ---
+ const sections = document.querySelectorAll('main section');
+ const observer = new window.IntersectionObserver((entries) => {
+   entries.forEach(entry => {
+     if (entry.isIntersecting) {
+       entry.target.classList.add('section-visible');
+     }
+   });
+ }, { threshold: 0.18 });
+ sections.forEach(section => observer.observe(section));
+ </script>
+</body>
+</html> 
